@@ -1,12 +1,15 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Post } from "@nestjs/common";
 import { AppService } from './app.service';
+import { SubscribeDto } from "./dtos/subscribe.dto";
+import { SuccessResponseDto } from "./dtos/success-response.dto";
 
-@Controller()
+@Controller('Subscription')
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor() {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Post('subscribe')
+  async subscribe(@Body() body: SubscribeDto): Promise<SuccessResponseDto> {
+    return new SuccessResponseDto();
   }
+
 }
